@@ -3,7 +3,7 @@ import dill
 plt.style.use("plotstyle.mplstyle")
 
 # Load losses
-file = open("data/losses", "rb")
+file = open("examples/MNIST/data/losses", "rb")
 losses = dill.load(file)
 file.close()
 

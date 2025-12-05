@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-mnist_data = np.load("data/mnist.npz")
+mnist_data = np.load("examples/MNIST/data/mnist.npz")
 training_images = mnist_data["x_train"].astype(np.float32)
 training_labels = mnist_data["y_train"].astype(np.float32)
 

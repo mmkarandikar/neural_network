@@ -18,14 +18,14 @@ from src.network.network_functions import train, predict
 
 # Load training data
 cutoff = 20000 # we load a subset of the full dataset
-data = np.load('data/mnist_data_normalised.npz')
+data = np.load('examples/MNIST/data/mnist_data_normalised.npz')
 images = (data['training_images'].astype(np.float32))[:cutoff]
 labels = (data['training_labels'].astype(int))[:cutoff]
 
 # Define the network parameters
 input_layer_size = int(images[0].size)
 output_layer_size = 10
-hidden_layer_size = 32
+hidden_layer_size = 16
 
 network = [
         DenseLayer(input_layer_size, hidden_layer_size),
@@ -63,16 +63,16 @@ validation_labels = true_labels[validation_map, :]
 testing_labels = true_labels[testing_map, :]
 
 # Train network
-network, training_loss, validation_loss = train(network, train_x=training_input, train_y=training_labels, valid_x=validation_input, valid_y=validation_labels, epochs=25, save_rate=5, learning_rate=0.07)
+network, training_loss, validation_loss = train(network, train_x=training_input, train_y=training_labels, valid_x=validation_input, valid_y=validation_labels, epochs=15, save_rate=5, learning_rate=0.005, save_path="examples/MNIST/data/saved_weights/")
 
 # Save test data, the trained network and the losses
 test_data = np.concatenate((testing_input, testing_labels), axis=1)
-np.save("data/test_data", test_data)
+np.save("examples/MNIST/data/test_data", test_data)
 
-file = open("data/trained_network", "wb")
+file = open("examples/MNIST/data/trained_network", "wb")
 dill.dump(network, file)
 file.close()
 
-file = open("data/losses", "wb")
+file = open("examples/MNIST/data/losses", "wb")
 dill.dump(np.array([training_loss, validation_loss]), file)
 file.close()

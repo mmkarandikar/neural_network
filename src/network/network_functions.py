@@ -9,7 +9,7 @@ from . import MeanSquaredError
 
 def train(network: list, train_x: np.array, train_y: np.array, valid_x: np.array = None,
             valid_y: np.array = None, epochs: int = 100, learning_rate: float = 0.01,
-                 save_rate: int = None) -> tuple:
+                 save_rate: int = None, save_path: str = None) -> tuple:
     """
     This function trains the input network with the training data.
     
@@ -78,7 +78,7 @@ def train(network: list, train_x: np.array, train_y: np.array, valid_x: np.array
 
         if save_rate is not None:
             if epoch%save_rate == 0:
-                file = open(f"data/saved_weights/epoch_{epoch:03d}", "wb")
+                file = open(f"{savepath}/epoch_{epoch:03d}", "wb")
                 dill.dump(network, file)
                 file.close()
             else:
