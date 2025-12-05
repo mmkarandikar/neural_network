@@ -27,11 +27,11 @@ def calculate_accuracy(file_name: str) -> np.array:
     return accuracy
 
 # Load test data
-test_data = np.load("data/test_data.npy")
+test_data = np.load("examples/MNIST/data/test_data.npy")
 test_inputs = test_data[:, :784]
 test_labels = test_data[:, 784:]
 
 for i in range(0, 21, 5):
-    file_name = f"data/saved_weights/epoch_{i:03d}"
+    file_name = f"examples/MNIST/data/saved_weights/epoch_{i:03d}"
     accuracy = calculate_accuracy(file_name)
     print(f"Accuracy: {accuracy*100}%")
