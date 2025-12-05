@@ -78,7 +78,7 @@ def train(network: list, train_x: np.array, train_y: np.array, valid_x: np.array
 
         if save_rate is not None:
             if epoch%save_rate == 0:
-                file = open(f"{savepath}/epoch_{epoch:03d}", "wb")
+                file = open(f"{save_path}/epoch_{epoch:03d}", "wb")
                 dill.dump(network, file)
                 file.close()
             else:
