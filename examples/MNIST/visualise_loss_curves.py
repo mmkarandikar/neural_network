@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import dill
-plt.style.use("plotstyle.mplstyle")
+plt.style.use("examples/MNIST/plotstyle.mplstyle")
 
 # Load losses
 file = open("examples/MNIST/data/losses", "rb")

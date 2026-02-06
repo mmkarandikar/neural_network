@@ -1,14 +1,17 @@
 """
 Use the trained network to make predictions
 """
+
 # Import modules
 import sys
 import os
+
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, parent_dir)
 import numpy as np
 import dill
 from src.network.network_functions import predict
+
 
 def calculate_accuracy(file_name: str) -> np.array:
     """
@@ -20,18 +23,20 @@ def calculate_accuracy(file_name: str) -> np.array:
     file.close()
 
     # Make predictions
-    predictions = predict(network, test_inputs)[:, :, 0].argmax(axis=1)
+    predictions = predict(network, test_inputs).argmax(axis=1)
     truth = test_labels.argmax(axis=1)
 
-    accuracy = sum((predictions == truth).astype(int)) / test_inputs.shape[0]
-    return accuracy
+    accuracy = (sum((predictions == truth).astype(int)) / test_inputs.shape[0]) * 100
+    return np.round(accuracy, 3)
+
 
 # Load test data
 test_data = np.load("examples/MNIST/data/test_data.npy")
 test_inputs = test_data[:, :784]
 test_labels = test_data[:, 784:]
 
-for i in range(0, 21, 5):
-    file_name = f"examples/MNIST/data/saved_weights/epoch_{i:03d}"
-    accuracy = calculate_accuracy(file_name)
-    print(f"Accuracy: {accuracy*100}%")
+
+save_path = "examples/MNIST/data/saved_weights/"
+for file in sorted(os.listdir(save_path)):
+    accuracy = calculate_accuracy(save_path + file)
+    print(f"Epoch: {int(file[-3:])}, Accuracy: {accuracy}%")
