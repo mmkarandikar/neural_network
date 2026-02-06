@@ -6,11 +6,10 @@ In this package, we build a neural network using only the standard python librar
     + Backpropagation via regular gradient descent
     + Choice of activations between ReLU, Sigmoid and Softmax
     + An example use case with the MNIST dataset of handwritten digits
+    + Implemented batches
 
 * Here is a list of features yet to be added:
-    + Implement batches
     + Implement normalisation between layers (or add BatchNorm)
-    + Add more loss functions
-    + Implement layers (recurrent, convolutionl)
+    + Implement convolutional layer backprop
+    + Add transformer layer
     + Add flavours of gradient descent
-    + Implement a network class
